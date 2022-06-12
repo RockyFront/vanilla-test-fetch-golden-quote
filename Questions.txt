@@ -1,0 +1,9 @@
+1.
+-------------------------------
+Why do we need to wait for 
+response.json();
+Isn't the response from server already saved in our app?
+
+let response = await fetch(url, options); // resolves with response headers
+let result = await response.json(); // read body as json
+--------------------------------------------------------------

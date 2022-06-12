@@ -1,0 +1,30 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<img src="" alt="" id="myIMG">
+<script>
+
+    const fetchController = new AbortController();
+
+    function getData(url) {
+        const {signal} = fetchController;
+        let timmy = setTimeout(() => fetchController.abort(), 3000)
+        fetch(url, {signal})
+            .then((resp) => resp.blob())
+            .then((data) => {
+                clearTimeout(timmy);
+                document.getElementById('myIMG').src = URL.createObjectURL(data)
+            })
+            .catch(err => console.warn({err}));
+    }
+
+    getData('./goldenQuote.jpg')
+</script>
+</body>
+</html>
